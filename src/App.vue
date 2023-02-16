@@ -1,20 +1,21 @@
 <template>
-  <component :is="layout">
-    <router-view />
-  </component>
+    <component :is="layout">
+        <router-view />
+    </component>
 </template>
 
 <script>
-import { useRoute } from "vue-router";
-import { computed } from "vue";
-import { PUBLIC_LAYOUT } from "@/constant";
+import { useRoute } from 'vue-router';
+import { computed } from 'vue';
+import { PUBLIC_LAYOUT } from '@/constant';
 export default {
-  setup() {
-    const route = useRoute();
-    console.log(route);
-    return {
-      layout: computed(() => (route.meta.layout || PUBLIC_LAYOUT) + "-layout"),
-    };
-  },
+    setup() {
+        const route = useRoute();
+        return {
+            layout: computed(
+                () => (route.meta.layout || PUBLIC_LAYOUT) + '-layout',
+            ),
+        };
+    },
 };
 </script>

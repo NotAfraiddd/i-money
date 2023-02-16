@@ -1,3 +1,8 @@
+body{
+  @apply bg-backgroundColor;
+  font-size: 16px;
+}
+
 @font-face {
     font-family: "t2ico";
     src: url("../assets/fonts/t2ico.eot?84r94p");

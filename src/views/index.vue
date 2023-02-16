@@ -1,9 +1,11 @@
 <template>
-  <slot />
+  <div class="home">
+  </div>
 </template>
 
 <script>
+
 export default {
-  name: "DefaultLayout",
+  name: "HomeView",
 };
 </script>
