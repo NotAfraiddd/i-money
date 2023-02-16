@@ -1,4 +1,10 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-
-createApp(App).mount("#app");
+import router from "./router";
+import "./style/tailwind.css";
+import "./style/global.css";
+import { registerGlobalComponent } from "./utils/import";
+const app = createApp(App);
+registerGlobalComponent(app);
+app.use(router);
+app.mount("#app");
