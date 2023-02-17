@@ -14,6 +14,7 @@
                             class="px-4 py-3 rounded-lg border border-gray-500 mt-1"
                             type="text"
                             placeholder="Full name"
+                            v-model="fullName"
                         />
                     </label>
                 </div>
@@ -28,17 +29,20 @@
                             class="px-4 py-3 rounded-lg border border-gray-500 mt-1"
                             type="email"
                             placeholder="Email "
+                            v-model="email"
                         />
                     </label>
                 </div>
                 <div class="row">
                     <label class="flex flex-col justify-start" for="passWord">
                         <span class="font-semibold">Password</span>
+                        <!-- v-model: Vue có thể tự động cập nhật phần tử có trên input -->
                         <input
                             id="passWord"
                             class="px-4 py-3 rounded-lg border border-gray-500 mt-1"
                             type="password"
                             placeholder="Password"
+                            v-model="password"
                         />
                     </label>
                 </div>
@@ -65,11 +69,17 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 export default {
     name: 'RegisterView',
     setup() {
-        function onSubmit() {}
-        return { onSubmit };
+        const fullName = ref('');
+        const email = ref('');
+        const password = ref('');
+        function onSubmit() {
+            console.log({ fullName, email, password });
+        }
+        return { fullName, email, password, onSubmit };
     },
 };
 </script>
