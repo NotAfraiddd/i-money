@@ -16,7 +16,9 @@
                             id="emailAdress"
                             class="px-4 py-3 rounded-lg border border-gray-500 mt-1"
                             type="email"
-                            placeholder="Email "
+                            placeholder="Email"
+                            autocomplete="username"
+                            v-model="email"
                         />
                     </label>
                 </div>
@@ -28,6 +30,8 @@
                             class="px-4 py-3 rounded-lg border border-gray-500 mt-1"
                             type="password"
                             placeholder="Password"
+                            autocomplete="current-password"
+                            v-model="password"
                         />
                     </label>
                 </div>
@@ -40,6 +44,10 @@
                     </button>
                 </div>
             </form>
+            <!-- error -->
+            <div v-if="error" class="text-left text-red mt-4">
+                <span>{{ error }}</span>
+            </div>
             <!-- direction -->
             <div class="w-full text-center mt-6">
                 <span class="font-semibold">If you don't have an account.</span>
@@ -54,8 +62,22 @@
 </template>
 
 <script>
+import { useSignIn } from '@/composable/useSignIn';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 export default {
     name: 'LoginView',
+    setup() {
+        const { error, isPending, signIn } = useSignIn();
+        const email = ref('');
+        const password = ref('');
+        const router = useRouter();
+        async function onSubmit() {
+            await signIn(email.value, password.value);
+            await router.push('/');
+        }
+        return { error, isPending, email, password, onSubmit };
+    },
 };
 </script>
 

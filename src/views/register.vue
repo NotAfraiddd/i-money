@@ -4,7 +4,7 @@
             <!-- form -->
             <form
                 class="flex flex-col justify-start space-y-6"
-                @submit.prevent="onSubmit"
+                @submit.prevent="onSubmit()"
             >
                 <div class="row">
                     <label class="flex flex-col justify-start" for="fullName">
@@ -69,17 +69,21 @@
 </template>
 
 <script>
+import { useSignUp } from '@/composable/useSignUp';
 import { ref } from 'vue';
 export default {
     name: 'RegisterView',
     setup() {
+        const { error, isPending, signUp } = useSignUp();
+
         const fullName = ref('');
         const email = ref('');
         const password = ref('');
-        function onSubmit() {
-            console.log({ fullName, email, password });
+
+        async function onSubmit() {
+            await signUp(fullName.value, email.value, password.value);
         }
-        return { fullName, email, password, onSubmit };
+        return { fullName, email, password, error, isPending, onSubmit };
     },
 };
 </script>

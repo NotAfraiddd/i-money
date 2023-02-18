@@ -1,11 +1,7 @@
-import firebase, { initializeApp } from 'firebase/app';
+import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-} from 'firebase/auth';
-// TODO: Replace the following with your app's Firebase project configuration
+import { getAuth } from 'firebase/auth';
+
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: 'AIzaSyBmB_uMNKtprljy0nC0x_GI70mk8Rf8Wks',
@@ -20,26 +16,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const projectStore = getFirestore();
 const projectAuth = getAuth();
-const createUser = createUserWithEmailAndPassword(fullName, email, pass)
-    .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-    });
-const SignUser = signInWithEmailAndPassword(fullName, email, password)
-    .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // ...
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-    });
 
-export { app, projectAuth, projectStore, createUser, SignUser };
+export { app, projectAuth, projectStore };
